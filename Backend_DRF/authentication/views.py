@@ -16,5 +16,6 @@ def register(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def user_details(request):
-    serializer = UserSerializer(request.data)
-    return Response(serializer.data);
+    serializer = UserSerializer(request.user);
+    return Response(serializer.data, status=status.HTTP_200_OK);
+

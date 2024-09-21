@@ -3,3 +3,5 @@ djangorestframework
 djangorestframework-simplejwt
 psycopg2-binary==2.9.6
 django-cors-headers>=3.13.0
+fastapi>=0.95.0
+uvicorn>=0.22.0

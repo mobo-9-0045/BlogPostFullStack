@@ -33,3 +33,10 @@ services:
       - DB_PASSWORD=django_password
       - DB_HOST=db
       - DB_PORT=5432
+  # frontend:
+  #   build: ./Frontend_Nuxt
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
