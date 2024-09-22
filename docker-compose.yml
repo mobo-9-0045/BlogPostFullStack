@@ -11,11 +11,26 @@ services:
       - POSTGRES_PASSWORD=django_password
     ports:
       - "5432:5432"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U django_user"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+    # healthcheck:
+      # test: ["CMD-SHELL", "pg_isready -U django_user"]
+      # interval: 5s
+      # timeout: 5s
+      # retries: 5
+  comments_db:
+    image: postgres:13
+    volumes:
+      - ./database/comments_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=comments_db
+      - POSTGRES_USER=comments_user
+      - POSTGRES_PASSWORD=comments_password
+    ports:
+      - "5433:5432"
+    # healthcheck:
+    #   test: ["CMD-SHELL", "pg_isready -U comments_user"]
+    #   interval: 5s
+    #   timeout: 5s
+    #   retries: 5
 
   web:
     build: ./Backend_DRF
@@ -25,18 +40,31 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      db:
-        condition: service_healthy
+      - db
+        # condition: service_healthy
     environment:
       - DB_NAME=blog_db
       - DB_USER=django_user
       - DB_PASSWORD=django_password
       - DB_HOST=db
       - DB_PORT=5432
-  # frontend:
-  #   build: ./Frontend_Nuxt
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     db:
-  #       condition: service_healthy
+  frontend:
+    build: ./Frontend_Nuxt
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+        # condition: service_healthy
+  comments:
+    build: ./Comments_Microservice
+    ports:
+      - "8001:8001"
+    depends_on:
+      - comments_db
+        # condition: service_healthy
+    environment:
+      - DB_NAME=comments_db
+      - DB_USER=comments_user
+      - DB_PASSWORD=comments_password
+      - DB_HOST=comments_db
+      - DB_PORT=5432

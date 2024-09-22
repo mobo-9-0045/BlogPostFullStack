@@ -23,7 +23,6 @@
                 </div>
                 <button class="w-full px-4 py-2 font-bold text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-500" @click="login">Login</button>
                 <button class="w-full px-4 py-2 font-bold text-white bg-gray-400 rounded hover:bg-gray-700 focus:ring-4 focus:ring-indigo-500" @click="navigateToRegister">Register</button>
-                <button class="w-full px-4 py-2 font-bold text-white bg-gray-400 rounded hover:bg-gray-700 focus:ring-4 focus:ring-indigo-500" @click="googleLogin">Login Google</button>
             </div>
         </div>
     </div>
@@ -43,7 +42,7 @@
             console.log('res: ', res);
             if (res.status == 200){
                 localStorage.setItem('token', res.data.access);
-                return navigateTo('/profile');
+                return navigateTo('/home');
             }
         }
         catch(err){
@@ -53,9 +52,5 @@
 
     function navigateToRegister(){
         return navigateTo('/register');
-    }
-
-    const googleLogin = () =>{
-        window.location.href = 'http://localhost:3000/auth/google';
     }
 </script>
