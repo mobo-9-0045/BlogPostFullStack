@@ -2,13 +2,13 @@
 import type { DefineComponent, SlotsType } from 'vue'
 type IslandComponent<T extends DefineComponent> = T & DefineComponent<{}, {refresh: () => Promise<void>}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, SlotsType<{ fallback: { error: unknown } }>>
 interface _GlobalComponents {
-      'Defautl': typeof import("../components/Defautl.vue")['default']
+      'BlogUpdate': typeof import("../components/BlogUpdate.vue")['default']
+    'Defautl': typeof import("../components/Defautl.vue")['default']
     'HobbieUpdate': typeof import("../components/HobbieUpdate.vue")['default']
     'OtpVerification': typeof import("../components/OtpVerification.vue")['default']
     'PasswordUpdate': typeof import("../components/PasswordUpdate.vue")['default']
     'ProfileCards': typeof import("../components/Profile/Cards.vue")['default']
     'ProfileUpdate': typeof import("../components/ProfileUpdate.vue")['default']
-    'ProjectUpdate': typeof import("../components/ProjectUpdate.vue")['default']
     'CertificateUpdate': typeof import("../components/certificateUpdate.vue")['default']
     'Sidebar': typeof import("../components/sidebar.vue")['default']
     'SkillUpdate': typeof import("../components/skillUpdate.vue")['default']
@@ -36,13 +36,13 @@ interface _GlobalComponents {
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
     'NuxtIsland': typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
-      'LazyDefautl': typeof import("../components/Defautl.vue")['default']
+      'LazyBlogUpdate': typeof import("../components/BlogUpdate.vue")['default']
+    'LazyDefautl': typeof import("../components/Defautl.vue")['default']
     'LazyHobbieUpdate': typeof import("../components/HobbieUpdate.vue")['default']
     'LazyOtpVerification': typeof import("../components/OtpVerification.vue")['default']
     'LazyPasswordUpdate': typeof import("../components/PasswordUpdate.vue")['default']
     'LazyProfileCards': typeof import("../components/Profile/Cards.vue")['default']
     'LazyProfileUpdate': typeof import("../components/ProfileUpdate.vue")['default']
-    'LazyProjectUpdate': typeof import("../components/ProjectUpdate.vue")['default']
     'LazyCertificateUpdate': typeof import("../components/certificateUpdate.vue")['default']
     'LazySidebar': typeof import("../components/sidebar.vue")['default']
     'LazySkillUpdate': typeof import("../components/skillUpdate.vue")['default']
@@ -84,13 +84,13 @@ declare module 'vue' {
   export interface GlobalComponents extends _GlobalComponents { }
 }
 
+export const BlogUpdate: typeof import("../components/BlogUpdate.vue")['default']
 export const Defautl: typeof import("../components/Defautl.vue")['default']
 export const HobbieUpdate: typeof import("../components/HobbieUpdate.vue")['default']
 export const OtpVerification: typeof import("../components/OtpVerification.vue")['default']
 export const PasswordUpdate: typeof import("../components/PasswordUpdate.vue")['default']
 export const ProfileCards: typeof import("../components/Profile/Cards.vue")['default']
 export const ProfileUpdate: typeof import("../components/ProfileUpdate.vue")['default']
-export const ProjectUpdate: typeof import("../components/ProjectUpdate.vue")['default']
 export const CertificateUpdate: typeof import("../components/certificateUpdate.vue")['default']
 export const Sidebar: typeof import("../components/sidebar.vue")['default']
 export const SkillUpdate: typeof import("../components/skillUpdate.vue")['default']
@@ -118,13 +118,13 @@ export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+export const LazyBlogUpdate: typeof import("../components/BlogUpdate.vue")['default']
 export const LazyDefautl: typeof import("../components/Defautl.vue")['default']
 export const LazyHobbieUpdate: typeof import("../components/HobbieUpdate.vue")['default']
 export const LazyOtpVerification: typeof import("../components/OtpVerification.vue")['default']
 export const LazyPasswordUpdate: typeof import("../components/PasswordUpdate.vue")['default']
 export const LazyProfileCards: typeof import("../components/Profile/Cards.vue")['default']
 export const LazyProfileUpdate: typeof import("../components/ProfileUpdate.vue")['default']
-export const LazyProjectUpdate: typeof import("../components/ProjectUpdate.vue")['default']
 export const LazyCertificateUpdate: typeof import("../components/certificateUpdate.vue")['default']
 export const LazySidebar: typeof import("../components/sidebar.vue")['default']
 export const LazySkillUpdate: typeof import("../components/skillUpdate.vue")['default']
