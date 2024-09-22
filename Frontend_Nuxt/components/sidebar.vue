@@ -3,7 +3,7 @@
         <h2 class="text-sm md:text-md lg:text-xl xl:text-2xl font-bold mb-4">X BlogPost</h2>
 
         <ul class="flex flex-col justify-between">
-          <li class="text-center text-sm md:text-md lg:text-xl font-bold w-full p-4 flex items-center justify-around" @click="navTo('/home')">
+          <li class="text-center text-sm md:text-md lg:text-xl font-bold w-full p-4 flex items-center justify-around cursor-pointer" @click="navTo('/home')">
             <Icon name="uil:home" size="1em" class="md:p-1"/>
             <h2>Home</h2>
           </li>
