@@ -9,4 +9,5 @@ class Comment(Base):
     id = Column(Integer, primary_key=True, index=True)
     content = Column(String, index=True)
     user_id = Column(Integer)
+    username = Column(String);
     blogpost_id = Column(Integer);

@@ -30,9 +30,17 @@ def updatBlog(request, id):
 @api_view(['get'])
 @permission_classes([IsAuthenticated])
 def getBlogs(request):
-    blogs = BlogPost.objects.filter(author=request.user)
+    blogs = BlogPost.objects.all()
     serializer = BlogPostSerializer(blogs, many=True);
     return Response(serializer.data, status=status.HTTP_200_OK);
+
+@api_view(['get'])
+@permission_classes([IsAuthenticated])
+def getUserBlogs(request, id):
+    blogs = BlogPost.objects.filter(author=id);
+    serializer = BlogPostSerializer(blogs, many=True);
+    return Response(serializer.data, status=status.HTTP_200_OK);
+    
 
 @api_view(['delete'])
 @permission_classes([IsAuthenticated])

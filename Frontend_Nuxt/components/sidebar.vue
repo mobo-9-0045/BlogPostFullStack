@@ -15,6 +15,10 @@
             <Icon name="uil:file-alt" size="1em" class="md:p-1"/>
             <h2>Post</h2>
           </li>
+        <li class="text-center text-sm md:text-md lg:text-xl font-bold w-full p-4 flex items-center justify-around cursor-pointer" @click="logout">
+            <Icon name="uil:logout" size="1em" class="md:p-1"/>
+            <h2>Logout</h2>
+        </li>
         </ul>
     </div>
     <button class="md:hidden fixed top-0 m-4 bg-blue-500 text-white px-6 p-1 rounded" @click="toggleSidebar" :class="{ 'left-0': !showSidebar, 'left-24': showSidebar, 'ml-7': showSidebar }">
@@ -32,5 +36,10 @@
     };
     const navTo = (targetPage: string) => {
         return navigateTo(targetPage);
+    }
+
+    const logout = () =>{
+      localStorage.removeItem('token');
+      return navigateTo('/login');
     }
 </script>

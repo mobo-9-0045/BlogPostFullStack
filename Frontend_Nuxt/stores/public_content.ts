@@ -2,9 +2,11 @@ import axios from 'axios';
 import { defineStore } from 'pinia';
 
 export interface Comment{
+    id: number;
     content: string;
     user_id: number;
     blogpost_id: number;
+    username: string;
 }
 
 export const usePublicContentStore = defineStore('publicContent', {
@@ -15,7 +17,6 @@ export const usePublicContentStore = defineStore('publicContent', {
     actions: {
         async fetchPublicBlogs() {
             const token = localStorage.getItem('token');
-            console.log('token in blogs: ', token);
             try {
                 const res = await axios.get("http://localhost:8000/api/blogs/getblogs/",
                 {
@@ -23,7 +24,6 @@ export const usePublicContentStore = defineStore('publicContent', {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log('res: ', res);
                 this.blogs = res.data;
             } 
             catch (error) {
@@ -31,12 +31,9 @@ export const usePublicContentStore = defineStore('publicContent', {
             }
         },
         async fetchPublicComments() {
-            console.log('this is called');
             try{
                 const res = await axios.get(`http://localhost:8001/getall/comments/`);
-                console.log('comments res: ', res.data);
                 this.comments = res.data;
-                console.log('comments: ', this.comments);
             }
             catch(error){
                 console.log('error');

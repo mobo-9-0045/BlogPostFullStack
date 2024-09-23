@@ -16,9 +16,9 @@ class RegisterSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({'passowrd': "Password filed didn't match"});
         return attrs;
 
-    def create(self, valildated_data):
-        valildated_data.pop('password2');
-        user = User.objects.create_user(**valildated_data);
+    def create(self, validated_data):
+        validated_data.pop('password2');
+        user = User.objects.create_user(**validated_data);
         return user;
     
 

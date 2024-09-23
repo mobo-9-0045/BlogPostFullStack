@@ -54,14 +54,12 @@ export const useUserStore = defineStore('userStore',{
         },
         async fetchUser() {
             const token = await this.getToken();
-            console.log('token: ', token);
             try{
                 const res = await axios.get('http://localhost:8000/api/auth/user/details/',{
                     headers:{
                         Authorization: `Bearer ${token}`,
                     }
                 });
-                console.log('user details: ', res);
                 if (res.status == 200){
                     this.username = res.data.username;
                     this.id = res.data.id;
@@ -75,81 +73,17 @@ export const useUserStore = defineStore('userStore',{
 
         async getBlogs(){
             const token = localStorage.getItem('token');
-            console.log('token in blogs: ', token);
             try {
-                const res = await axios.get("http://localhost:8000/api/blogs/getblogs/",
+                const res = await axios.get(`http://localhost:8000/api/blogs/getUserBlogs/${this.id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log('res: ', res);
                 this.blogs = res.data;
             } 
             catch (error) {
-                console.log('Error updating project:', error);
-            }
-        },
-
-        async getUserById(id: number){
-            const token = await this.getToken();
-            try{
-                const res = await axios.get(`http://127.0.0.1:3000/users/user/${id}`,{
-                    headers:{
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                if (res.status == 200){
-                    this.updateState(res);
-                }
-            }
-            catch(erro){
-                return navigateTo('/login');
-            }
-        },
-
-        async updateUser(name: string, lastname: string, username: string){
-            const token = await this.getToken();
-            try{
-                const res = await axios.put(`http://127.0.0.1:3000/users/updateUser/${this.id}`,
-                    {
-                        name: name,
-                        lastname: lastname,
-                        username: username,
-                    },
-                    {
-                        headers:{
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-                if (res.status == 200){
-                    this.updateState(res);
-                    return navigateTo('/profile')
-                }
-            }
-            catch(error){
                 console.log(error);
-            }
-        },
-
-        async updatePassword(newPassword: string, oldPassword: string){
-            const token = await this.getToken();
-            const res = await axios.put(`http://127.0.0.1:3000/users/changePassword/`,
-                {
-                    oldpassword: oldPassword,
-                    username: this.username,
-                    password: newPassword
-                },
-                {
-                    headers:{
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-            if (res.status == 200){
-                this.updateState(res);
-                return navigateTo('/profile')
             }
         },
         updateState(res: AxiosResponse){
@@ -162,42 +96,5 @@ export const useUserStore = defineStore('userStore',{
             this.certificats = res.data.certificats;
             this.hobbies = res.data.hobbies;
         },
-        async getOtp(){
-            const token = await this.getToken();
-            try{
-                const res = await axios.get('http://127.0.0.1:3000/auth/email/getotp',{
-                    headers:{
-                        Authorization: `Bearer ${token}`,
-                    }
-                });
-                console.log('res : ', res);
-                if (res.status == 201){
-                    return navigateTo('/profile');
-                }
-            }
-            catch(err){
-                console.log(err);
-            }
-        },
-        async verifyOtp(otp: string){
-            const token = await this.getToken();
-            try {
-                const res = await axios.post('http://127.0.0.1:3000/auth/email/verifyotp',{
-                    email: 'mobo@man.com',
-                    otp: otp,
-                },
-                {
-                    headers:{
-                        Authorization: `Bearer ${token}`,
-                    }
-                });
-                if (res.status == 201){
-                    return navigateTo('/profile');
-                }
-            } 
-            catch (error) {
-                console.log('error :', error);
-            }
-        }
     },
 })

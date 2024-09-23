@@ -57,6 +57,7 @@
 
 <script setup lang="ts">
     import axios from "axios";
+    import Swal from "sweetalert2";
 
     const username = ref('')
     const email = ref('')
@@ -65,7 +66,7 @@
     const password = ref('')
     const register = async () => {
         try{
-            const res = await axios.post('http://localhost:8000/auth/register/',{
+            const res = await axios.post('http://localhost:8000/api/auth/register/',{
                 username: username.value,
                 email: email.value,
                 password: password.value,
@@ -73,13 +74,26 @@
                 first_name: name.value,
                 last_name: lastname.value,
             })
-            console.log('res: ', res);
             if (res.status == 201){
+                Swal.fire({
+                    'title': 'Updated',
+                    'icon': 'success',
+                    'text': 'comment Updated',
+                    'confirmButtonText': 'Ok',
+                    'confirmButtonColor': 'green'
+                    });
                 return navigateTo('/login');
             }
         }
         catch(err){
-            console.log(err);
+            Swal.fire({
+                'title': 'Error',
+                'icon': 'error',
+                'text': 'error in registration',
+                'confirmButtonText': 'Ok',
+                'confirmButtonColor': 'green'
+                });
+                return navigateTo('/login');
         }
     }
     function navigateToLogin(){
