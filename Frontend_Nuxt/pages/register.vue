@@ -78,7 +78,7 @@
                 Swal.fire({
                     'title': 'Updated',
                     'icon': 'success',
-                    'text': 'comment Updated',
+                    'text': 'you registred successfully',
                     'confirmButtonText': 'Ok',
                     'confirmButtonColor': 'green'
                     });

@@ -13,7 +13,6 @@
             <h2 class="text-sm lg:text-xl md:text-md font-semibold">{{ blog.title }}</h2>
             <p class="text-gray-900 text-sm lg:text-xl md:text-md">{{ blog.content }}</p>
             <div class="post-footer mt-2 text-gray-500">
-              <span>Posted by: {{ blog }}</span>
             </div>
             <CommentInput :blog="blog" :content="newComment.content"/>
             <div class="comments mt-4">

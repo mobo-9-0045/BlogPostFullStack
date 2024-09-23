@@ -7,16 +7,16 @@
             <Icon name="uil:home" size="1em" class="md:p-1"/>
             <h2>Home</h2>
           </li>
-          <li class="text-center text-sm md:text-md lg:text-xl font-bold w-full p-4 flex items-center justify-around" @click="navTo('/settings')">
+          <li class="text-center text-sm md:text-md lg:text-xl font-bold w-full p-4 flex items-center justify-around cursor-pointer" @click="navTo('/settings')">
             <Icon name="uil:setting" size="1em" class="md:p-1"/>
             <h2>Setting</h2>
           </li>
-          <li class="text-center text-sm md:text-md lg:text-xl font-bold w-full p-4 flex items-center justify-around" @click="navTo('/Post')">
+          <li class="text-center text-sm md:text-md lg:text-xl font-bold w-full p-4 flex items-center justify-around cursor-pointer" @click="navTo('/Post')">
             <Icon name="uil:file-alt" size="1em" class="md:p-1"/>
             <h2>Post</h2>
           </li>
         <li class="text-center text-sm md:text-md lg:text-xl font-bold w-full p-4 flex items-center justify-around cursor-pointer" @click="logout">
-            <Icon name="uil:logout" size="1em" class="md:p-1"/>
+            <Icon name="uil:arrow-circle-left" size="1em" class="md:p-1"/>
             <h2>Logout</h2>
         </li>
         </ul>
