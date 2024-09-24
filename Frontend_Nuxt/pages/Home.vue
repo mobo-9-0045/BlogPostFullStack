@@ -55,6 +55,9 @@
   import axios from 'axios';
   import Swal from 'sweetalert2';
 
+  definePageMeta({
+    middleware: ["auth"],
+  })
   const userStore = useUserStore();
   const publicStore = usePublicContentStore();
   const newComment = ref({

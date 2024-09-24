@@ -76,12 +76,12 @@
             })
             if (res.status == 201){
                 Swal.fire({
-                    'title': 'Updated',
+                    'title': 'Registred',
                     'icon': 'success',
                     'text': 'you registred successfully',
                     'confirmButtonText': 'Ok',
                     'confirmButtonColor': 'green'
-                    });
+                });
                 return navigateTo('/login');
             }
         }

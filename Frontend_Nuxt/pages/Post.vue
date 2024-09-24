@@ -60,6 +60,10 @@
   });
   const showAddProjectModal = ref(true);
 
+  definePageMeta({
+    middleware: ["auth"],
+  });
+
   onMounted(() => {
     userStore.fetchUser();
     userStore.getBlogs();
@@ -67,7 +71,6 @@
 
 const addBlog = async () => {
   const token = localStorage.getItem('token');
-  console.log('token: ', token);
   try {
     const res = await axios.post(
       'http://localhost:8000/api/blogs/create/',
@@ -90,7 +93,6 @@ const addBlog = async () => {
         'confirmButtonColor': 'green'
       });
     }
-    console.log('Blog created: ', res.data);
     showAddProjectModal.value = false;
   } catch (error) {
     console.log('error');

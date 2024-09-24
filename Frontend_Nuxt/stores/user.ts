@@ -1,30 +1,6 @@
 import axios, { type AxiosResponse } from 'axios';
 import { defineStore } from 'pinia';
 
-export interface Project {
-    projectName: string;
-    projectDescription: string;
-    id: number;
-}
-
-export interface Skill {
-    skillName: string;
-    skillDescription: string;
-    id: number;
-}
-
-export interface Certificat {
-    certificatName: string;
-    certificatDescription: string;
-    id: number;
-}
-
-export interface Hobbie {
-    hobbieName: string;
-    hobbieDescription: string;
-    id: number;
-}
-
 export interface Blog{
     title: string;
     content: string;
