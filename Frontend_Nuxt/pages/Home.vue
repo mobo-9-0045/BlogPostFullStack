@@ -15,7 +15,7 @@
               <div class="flex items-center space-x-4 text-sm text-gray-500">
                 <span class="flex items-center">
                   <Icon name="uil:calendar-alt" size="1.2em" class="mr-1" />
-                  {{ formatDate(blog.createdAt) }}
+                  {{ formatDate(blog.created_at) }}
                 </span>
                 <span class="flex items-center">
                   <Icon name="uil:comment" size="1.2em" class="mr-1" />

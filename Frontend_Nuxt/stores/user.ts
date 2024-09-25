@@ -5,6 +5,7 @@ export interface Blog{
     title: string;
     content: string;
     id: number;
+    created_at: string;
 }
 
 export const useUserStore = defineStore('userStore',{
@@ -69,11 +70,6 @@ export const useUserStore = defineStore('userStore',{
             this.name = res.data.name;
             this.lastname = res.data.lastname;
             this.username = res.data.username;
-            this.isActive = res.data.isActive;
-            this.projects = res.data.projects;
-            this.skills = res.data.skills;
-            this.certificats = res.data.certificats;
-            this.hobbies = res.data.hobbies;
         },
     },
 })
