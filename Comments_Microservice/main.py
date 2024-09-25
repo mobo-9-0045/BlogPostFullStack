@@ -7,9 +7,10 @@ from database import SessionLocal, engine, Base
 from pydantic import BaseModel
 from typing import List
 import httpx;
-
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
 Base.metadata.create_all(bind=engine)
-
+from fastapi.responses import Response
 app = FastAPI()
 
 origins = [
@@ -55,7 +56,13 @@ def create_comment(comment: CommentCreate, db: Session = Depends(get_db)):
     db.add(db_comment)
     db.commit()
     db.refresh(db_comment)
-    return db_comment
+    print(JSONResponse(
+        status_code=200,
+        content=jsonable_encoder(db_comment)))
+    return JSONResponse(
+        status_code=200,
+        content=jsonable_encoder(db_comment)
+    )
 
 @app.get("/getall/comments/", response_model=List[CommentResponse])
 def read_comments(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
@@ -91,4 +98,7 @@ def update_comment(user_id: int, comment_id: int, updated_comment: CommentUpdate
     comment.content = updated_comment.content
     db.commit()
     db.refresh(comment)
-    return comment
+    return JSONResponse(
+        status_code=200,
+        content=jsonable_encoder(comment)
+    )

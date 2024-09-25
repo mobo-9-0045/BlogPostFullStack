@@ -37,7 +37,9 @@
       const res = await axios.put(`http://localhost:8001/update/comment/${userStore.id}/${comment_id}`,{
         content: commentContent,
       })
+      console.log('res: ', res);
       if (res.status == 200){
+        commentContent = '';
         Swal.fire({
           'title': 'Updated',
           'icon': 'success',
@@ -45,6 +47,7 @@
           'confirmButtonText': 'Ok',
           'confirmButtonColor': 'green'
         });
+        window.location.reload();
       }
       else{
         Swal.fire({

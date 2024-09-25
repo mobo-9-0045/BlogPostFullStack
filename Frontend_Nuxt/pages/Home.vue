@@ -95,6 +95,7 @@
           'confirmButtonText': 'Ok',
           'confirmButtonColor': 'green'
         });
+        window.location.reload();
       }
       else{
         Swal.fire({

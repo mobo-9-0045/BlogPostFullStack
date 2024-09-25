@@ -1,4 +1,5 @@
 <template>
+    <toastComponent :showToast="showToast" content="Login successful"/>
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
         <div class="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-lg">
             <h1 class="text-2xl font-bold text-center">Login</h1>
@@ -30,9 +31,11 @@
 
 <script setup lang="ts">
     import axios from "axios";
-    
+    import { ref } from "vue";
+
     const username = ref('')
     const password = ref('')
+    const showToast = ref(false);
     const login = async () => {
         try{
             const res = await axios.post('http://localhost:8000/api/auth/login/',{
@@ -41,6 +44,7 @@
             })
             console.log('res: ', res);
             if (res.status == 200){
+                showToast.value = true;
                 localStorage.setItem('token', res.data.access);
                 return navigateTo('/home');
             }
