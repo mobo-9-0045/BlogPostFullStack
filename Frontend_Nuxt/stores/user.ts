@@ -39,6 +39,9 @@ export const useUserStore = defineStore('userStore',{
                 if (res.status == 200){
                     this.username = res.data.username;
                     this.id = res.data.id;
+                    this.name = res.data.name;
+                    this.lastname = res.data.lastname;
+                    this.email = res.data.email;
                     await this.getBlogs();
                 }
             }

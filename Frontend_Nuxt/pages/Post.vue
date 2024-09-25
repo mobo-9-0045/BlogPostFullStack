@@ -2,8 +2,8 @@
   <div class="flex">
     <Sidebar/>
     <!-- Main Content -->
-    <main class="flex-1 mt-10 lg:ml-4 m-2 md:w-full">
-      <div class="shadow-md text-sm md:text-sm lg:text-xl rounded-lg p-4 mb-6 mx-auto md:w-2/3 lg:w-3/5 h-full">
+    <main class="flex-1 ml-64 max-w-3xl px-4 py-8">
+      <div class="shadow-md text-sm md:text-sm lg:text-xl rounded-lg p-4 mb-6 mx-auto w-full h-full">
         <h2 class="text-xl font-bold mb-4">Add New Blog</h2>
 
         <div class="mb-4">

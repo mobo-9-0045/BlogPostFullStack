@@ -1,45 +1,61 @@
 <template>
-    <div class="w-2/6 md:w-1/6 lg:w-1/6 p-5 fixed left-0 top-0 bg-gray-100 border border-gray-100 h-screen md:block" :class="{ 'hidden': !showSidebar }">
-        <h2 class="text-sm md:text-md lg:text-xl xl:text-2xl font-bold mb-4">X BlogPost</h2>
-
-        <ul class="flex flex-col justify-between">
-          <li class="text-center text-sm md:text-md lg:text-xl font-bold w-full p-4 flex items-center justify-around cursor-pointer" @click="navTo('/home')">
-            <Icon name="uil:home" size="1em" class="md:p-1"/>
-            <h2>Home</h2>
-          </li>
-          <li class="text-center text-sm md:text-md lg:text-xl font-bold w-full p-4 flex items-center justify-around cursor-pointer" @click="navTo('/settings')">
-            <Icon name="uil:setting" size="1em" class="md:p-1"/>
-            <h2>Setting</h2>
-          </li>
-          <li class="text-center text-sm md:text-md lg:text-xl font-bold w-full p-4 flex items-center justify-around cursor-pointer" @click="navTo('/Post')">
-            <Icon name="uil:file-alt" size="1em" class="md:p-1"/>
-            <h2>Post</h2>
-          </li>
-        <li class="text-center text-sm md:text-md lg:text-xl font-bold w-full p-4 flex items-center justify-around cursor-pointer" @click="logout">
-            <Icon name="uil:arrow-circle-left" size="1em" class="md:p-1"/>
-            <h2>Logout</h2>
-        </li>
-        </ul>
+  <div class="fixed h-screen w-64 bg-black text-white p-4 flex flex-col justify-between">
+    <!-- Logo -->
+    <div>
+      <Icon name="uil:twitter" size="2em" class="text-white mb-4" />
+      <h1>Blog Post</h1>
+      
+      <nav class="space-y-2">
+        <button @click="navTo('/home')" class="flex items-center space-x-4 hover:bg-gray-900 rounded-full p-3 w-full transition duration-200">
+          <Icon name="uil:home" size="1.5em" />
+          <span class="text-xl">Home</span>
+        </button>
+        <button @click="navTo('/Post')" class="flex items-center space-x-4 hover:bg-gray-900 rounded-full p-3 w-full transition duration-200">
+          <Icon name="uil:file-alt" size="1.5em" />
+          <span class="text-xl">Post</span>
+        </button>
+        <button @click="navTo('/settings')" class="flex items-center space-x-4 hover:bg-gray-900 rounded-full p-3 w-full transition duration-200">
+          <Icon name="uil:setting" size="1.5em" />
+          <span class="text-xl">Settings</span>
+        </button>
+      </nav>
     </div>
-    <button class="md:hidden fixed top-0 m-4 bg-blue-500 text-white px-6 p-1 rounded" @click="toggleSidebar" :class="{ 'left-0': !showSidebar, 'left-24': showSidebar, 'ml-7': showSidebar }">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-    </button>
-    
+
+    <div class="mb-4">
+      <button class="flex items-center space-x-2 p-3 w-full transition duration-200">
+        <Icon name="uil:user" size="1.5em" />
+        <div class="flex-grow text-left">
+          <div class="font-bold">{{ userStore.username }}</div>
+          <div class="text-gray-500 text-sm">{{ userStore.email }}</div>
+        </div>
+        <Icon name="uil:ellipsis-h" size="1.5em" />
+      </button>
+      <button @click="logout" class="flex items-center space-x-2 hover:bg-gray-900 rounded-full p-3 w-full transition duration-200">
+        <Icon name="uil:sign-out-alt" size="1.5em" />
+        <span class="text-xl">Logout</span>
+      </button>
+    </div>
+  </div>
 </template>
 
-<script setup  lang="ts">
-    const showSidebar = ref(false);
-    const toggleSidebar = () => {
-        showSidebar.value = !showSidebar.value;
-    };
-    const navTo = (targetPage: string) => {
-        return navigateTo(targetPage);
-    }
+<script setup lang="ts">
+import { ref } from 'vue'
 
-    const logout = () =>{
-      localStorage.removeItem('token');
-      return navigateTo('/login');
-    }
+const showSidebar = ref(false)
+
+const toggleSidebar = () => {
+  showSidebar.value = !showSidebar.value
+}
+
+const navTo = (targetPage: string) => {
+  showSidebar.value = false
+  return navigateTo(targetPage)
+}
+
+const logout = () => {
+  localStorage.removeItem('token')
+  return navigateTo('/login')
+}
+
+const userStore = useUserStore();
 </script>

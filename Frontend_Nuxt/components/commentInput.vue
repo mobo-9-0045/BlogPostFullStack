@@ -37,6 +37,9 @@
         localContent.value = newValue;
     });
 
+    defineOptions({
+        inheritAttrs: false
+    })
 
     const addComment = async (blog: Blog) =>{
         const token = await userStore.getToken();
